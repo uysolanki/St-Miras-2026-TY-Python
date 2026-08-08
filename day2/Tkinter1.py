@@ -7,7 +7,7 @@ label1 = Label(root, text="Enter Name")
 label1.pack()
 
 label2 = Label(root, text="Enter Password", font=("Arial", 18, "bold"),fg="blue")
-label2.pack(pady=10)
+label2.pack(side="left",pady=10)
 root.mainloop()
 
 
