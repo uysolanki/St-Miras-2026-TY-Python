@@ -1,0 +1,216 @@
+Question 1) Write a Python program that tries to access the array element whose index is out of bound 
+and handle the corresponding exception.
+
+Program 1)
+arr = [10, 20, 30, 40, 50]
+
+try:
+    index = int(input("Enter index: "))
+    print("Element =", arr[index])
+
+except IndexError:
+    print("Error: Array index is out of bounds.")
+
+except ValueError:
+    print("Please enter a valid integer index.")
+	
+	
+Sample Output
+Enter index: 8
+Error: Array index is out of bounds.
+
+
+Question 2) Write a Python program to input a positive integer. Display correct message for correct and incorrect input.
+
+Program 2)
+
+try:
+    num = int(input("Enter a positive integer: "))
+
+    if num <= 0:
+        raise ValueError("Number should be positive.")
+
+    print("Correct Input")
+
+except ValueError:
+    print("Incorrect Input")
+Sample Output
+Enter a positive integer: -5
+Incorrect Input
+
+
+Question 3) Define a custom exception class which takes a string message as attribute.
+
+Program 3)
+
+class MyException(Exception):
+
+    def __init__(self, message):
+        self.message = message
+
+try:
+    raise MyException("This is a custom exception.")
+
+except MyException as e:
+    print("Exception:", e.message)
+	
+	
+Output
+Exception: This is a custom exception.
+
+
+Question 4) Write a function called oops() that explicitly raises an IndexError exception when called. 
+Then write another function that calls oops() inside a try/except statement to catch the error.
+
+Program 4)
+
+def oops():
+    raise IndexError("Index Error generated.")
+
+def catcher():
+    try:
+        oops()
+
+    except IndexError as e:
+        print("Caught Exception:", e)
+
+catcher()
+
+Output
+Caught Exception: Index Error generated.
+
+Question 5) Change the oops() function to raise an exception you define yourself, called MyError, 
+and pass an extra data item along with the exception.
+
+Program 5)
+class MyError(Exception):
+
+    def __init__(self, message, data):
+        self.message = message
+        self.data = data
+
+def oops():
+    raise MyError("Custom Error Occurred", 404)
+
+def catcher():
+
+    try:
+        oops()
+
+    except IndexError:
+        print("Index Error Caught")
+
+    except MyError as e:
+        print("Custom Exception:", e.message)
+        print("Extra Data:", e.data)
+
+catcher()
+
+
+Output
+Custom Exception: Custom Error Occurred
+Extra Data: 404
+
+
+Question 6) Define a class Date(Day, Month, Year) with functions to accept and display it. 
+Accept date from user. Throw user defined exception InvalidDateException if the date is invalid.
+
+Program 6)
+class InvalidDateException(Exception):
+    pass
+
+
+class Date:
+
+    def accept(self):
+        self.day = int(input("Enter Day: "))
+        self.month = int(input("Enter Month: "))
+        self.year = int(input("Enter Year: "))
+
+    def validate(self):
+
+        if self.month < 1 or self.month > 12:
+            raise InvalidDateException("Invalid Month")
+
+        if self.day < 1 or self.day > 31:
+            raise InvalidDateException("Invalid Day")
+
+        if self.month in [4, 6, 9, 11] and self.day > 30:
+            raise InvalidDateException("This month has only 30 days")
+
+        if self.month == 2:
+            leap = (self.year % 400 == 0) or (self.year % 4 == 0 and self.year % 100 != 0)
+
+            if leap:
+                if self.day > 29:
+                    raise InvalidDateException("February has only 29 days")
+            else:
+                if self.day > 28:
+                    raise InvalidDateException("February has only 28 days")
+
+    def display(self):
+        print("Date:", self.day, "/", self.month, "/", self.year)
+
+
+d = Date()
+
+try:
+    d.accept()
+    d.validate()
+    d.display()
+
+except InvalidDateException as e:
+    print("Exception:", e)
+	
+Sample Output
+Enter Day: 31
+Enter Month: 2
+Enter Year: 2024
+Exception: February has only 29 days
+
+
+Question 7) Write a text file named test.txt that contains integers, characters and float numbers. 
+		Write a Python program to read the test.txt file and print appropriate message using exception.
+
+
+test.txt
+100
+Hello
+25.5
+A
+500
+
+Program 7)
+try:
+
+    file = open("test.txt", "r")
+
+    print("File Contents:")
+    print(file.read())
+
+    file.close()
+
+except FileNotFoundError:
+    print("Error: File does not exist.")
+
+except PermissionError:
+    print("Permission denied while opening the file.")
+
+except Exception as e:
+    print("Some other error occurred:", e)
+
+else:
+    print("File read successfully.")
+
+finally:
+    print("Program Ended.")
+Output
+File Contents:
+100
+Hello
+25.5
+A
+500
+
+File read successfully.
+Program Ended.

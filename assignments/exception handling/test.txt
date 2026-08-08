@@ -1,0 +1,6 @@
+test.txt
+100
+Hello
+25.5
+A
+500

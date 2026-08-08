@@ -1,0 +1,186 @@
+Here are the main Tkinter controls you should know.
+
+1. Label
+
+Displays text.
+
+label = Label(root, text="Enter Name")
+label.pack()
+
+Equivalent idea in Java:
+
+Label label = new Label("Enter Name");
+2. Textbox / Input field → Entry
+
+For taking single-line input.
+
+entry = Entry(root)
+entry.pack()
+
+For example:
+
+Label(root, text="Enter Name").pack()
+Entry(root).pack()
+3. Button
+button = Button(root, text="Submit")
+button.pack()
+
+With an action:
+
+button = Button(root, text="Submit", command=my_function)
+4. CheckBox → Checkbutton
+
+For selecting multiple independent options.
+
+check = Checkbutton(root, text="I agree")
+check.pack()
+
+Example:
+
+☐ I agree
+☐ Java
+☐ Python
+☐ C++
+5. Radio Button → Radiobutton
+
+For selecting one option from a group.
+
+gender = StringVar()
+
+Radiobutton(root, text="Male", variable=gender, value="Male").pack()
+Radiobutton(root, text="Female", variable=gender, value="Female").pack()
+
+Conceptually:
+
+○ Male
+○ Female
+
+Only one can be selected because both use the same variable.
+
+6. Dropdown → Combobox
+
+Combobox comes from ttk.
+
+from tkinter import *
+from tkinter import ttk
+
+combo = ttk.Combobox(root)
+combo["values"] = ("Java", "Python", "C++")
+combo.pack()
+
+You get something like:
+
+┌─────────────────┐
+│ Java          ▼ │
+└─────────────────┘
+7. List Box → Listbox
+
+Displays a list of options.
+
+listbox = Listbox(root)
+
+listbox.insert(1, "Java")
+listbox.insert(2, "Python")
+listbox.insert(3, "C++")
+
+listbox.pack()
+
+Output conceptually:
+
+┌─────────────┐
+│ Java        │
+│ Python      │
+│ C++         │
+└─────────────┘
+8. Multi-line Text Box → Text
+
+Unlike Entry, Text allows multiple lines.
+
+text = Text(root, height=5, width=30)
+text.pack()
+
+Useful for:
+
+Address
+Comments
+Description
+Message
+9. Frame
+
+A Frame is a container, not normally something the user interacts with.
+
+frame = Frame(root)
+frame.pack()
+
+You can put other widgets inside it:
+
+label = Label(frame, text="Name")
+label.pack()
+
+entry = Entry(frame)
+entry.pack()
+
+Think of it like a Java Panel.
+
+10. Message
+
+Used for displaying multi-line/read-only text.
+
+message = Message(root, text="Welcome to Python")
+message.pack()
+11. Scale
+
+A slider.
+
+scale = Scale(root, from_=0, to=100)
+scale.pack()
+
+Conceptually:
+
+0 ───────●──────────── 100
+12. Spinbox
+
+Allows the user to select a value by increasing/decreasing.
+
+spin = Spinbox(root, from_=1, to=10)
+spin.pack()
+
+Conceptually:
+
+┌────┬──┐
+│  5 │▲ │
+│    │▼ │
+└────┴──┘
+13. Scrollbar
+
+Used with widgets such as Text, Listbox, etc.
+
+scrollbar = Scrollbar(root)
+scrollbar.pack(side=RIGHT, fill=Y)
+14. Menu
+
+For menu bars such as:
+
+File    Edit    View    Help
+
+Example:
+
+menu = Menu(root)
+
+file_menu = Menu(menu, tearoff=0)
+file_menu.add_command(label="Open")
+file_menu.add_command(label="Save")
+file_menu.add_separator()
+file_menu.add_command(label="Exit")
+
+menu.add_cascade(label="File", menu=file_menu)
+
+root.config(menu=menu)
+15. Progressbar
+
+Available through ttk.
+
+from tkinter import ttk
+
+progress = ttk.Progressbar(root, length=200)
+progress.pack()
