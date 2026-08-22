@@ -3,7 +3,10 @@ from tkinter import messagebox
 
 # Function to display alert message
 def show_alert():
-    messagebox.showinfo("Alert", "Button Pressed!")
+    # messagebox.showinfo("Alert", "Button Pressed!")
+    # messagebox.showerror("Alert", "Button Pressed!")
+    # messagebox.showwarning("Alert", "Button Pressed!")
+     messagebox.askretrycancel("Alert", "Button Pressed!")
 
 # Create the main window
 root = Tk()
